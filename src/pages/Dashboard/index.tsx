@@ -1,62 +1,70 @@
-import React from 'react';
+/* eslint-disable camelcase */
+
+import React, { useState, FormEvent } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
 import { Title, Form, Repositories } from './styles';
+import api from '../../services/api';
 
-const Dashboard: React.FunctionComponent = () => (
-  <>
-    <img src={logoImg} alt="Github Explorer" />
-    <Title>Dashboard</Title>
+interface Repository {
+  full_name: string;
+  description: string;
+  owner: {
+    login: string;
+    avatar_url: string;
+  };
+}
 
-    <Form>
-      <input placeholder="Digite o nome do repositório" />
-      <button type="submit">Pesquisar</button>
-    </Form>
+const Dashboard: React.FunctionComponent = () => {
+  const [newRepo, setNewRepo] = useState('');
+  const [repositories, setRepositories] = useState<Repository[]>([]);
 
-    <Repositories>
-      <a href="teste">
-        <img
-          src="https://media-exp1.licdn.com/dms/image/C4D03AQFNap9BXoLriw/profile-displayphoto-shrink_200_200/0?e=1609372800&v=beta&t=9jmpq_G8MpINHjULoLYinhb23r7Rne4MSU1leeQX5xA"
-          alt="Craudio"
+  async function handleAddRepository(
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<void> {
+    event.preventDefault();
+
+    const response = await api.get(`repos/${newRepo}`);
+
+    const repository = response.data;
+
+    setRepositories([...repositories, repository]);
+    setNewRepo('');
+  }
+
+  return (
+    <>
+      <img src={logoImg} alt="Github Explorer" />
+      <Title>Explore repositórios no GitHub</Title>
+
+      <Form onSubmit={handleAddRepository}>
+        <input
+          value={newRepo}
+          onChange={e => setNewRepo(e.target.value)}
+          placeholder="Digite o nome do repositório"
         />
+        <button type="submit">Pesquisar</button>
+      </Form>
 
-        <div>
-          <strong>Repositório</strong>
-          <p>Descrição</p>
-        </div>
+      <Repositories>
+        {repositories.map(repository => (
+          <a key={repository.full_name} href="teste">
+            <img
+              src={repository.owner.avatar_url}
+              alt={repository.owner.login}
+            />
 
-        <FiChevronRight size={20} />
-      </a>
+            <div>
+              <strong>{repository.full_name}</strong>
+              <p>{repository.description}</p>
+            </div>
 
-      <a href="teste">
-        <img
-          src="https://media-exp1.licdn.com/dms/image/C4D03AQFNap9BXoLriw/profile-displayphoto-shrink_200_200/0?e=1609372800&v=beta&t=9jmpq_G8MpINHjULoLYinhb23r7Rne4MSU1leeQX5xA"
-          alt="Craudio"
-        />
-
-        <div>
-          <strong>Repositório</strong>
-          <p>Descrição</p>
-        </div>
-
-        <FiChevronRight size={20} />
-      </a>
-
-      <a href="teste">
-        <img
-          src="https://media-exp1.licdn.com/dms/image/C4D03AQFNap9BXoLriw/profile-displayphoto-shrink_200_200/0?e=1609372800&v=beta&t=9jmpq_G8MpINHjULoLYinhb23r7Rne4MSU1leeQX5xA"
-          alt="Craudio"
-        />
-
-        <div>
-          <strong>Repositório</strong>
-          <p>Descrição</p>
-        </div>
-
-        <FiChevronRight size={20} />
-      </a>
-    </Repositories>
-  </>
-);
+            <FiChevronRight size={20} />
+          </a>
+        ))}
+      </Repositories>
+    </>
+  );
+};
 
 export default Dashboard;
