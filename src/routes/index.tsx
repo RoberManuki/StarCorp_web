@@ -12,4 +12,3 @@ const Routes: React.FunctionComponent = () => (
 );
 
 export default Routes;
-

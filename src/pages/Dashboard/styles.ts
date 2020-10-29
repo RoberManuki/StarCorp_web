@@ -58,7 +58,6 @@ export const Repositories = styled.div`
     align-items: center;
     transition: transform 0.3s;
 
-
     img {
       width: 64px;
       height: 64px;
@@ -80,7 +79,7 @@ export const Repositories = styled.div`
 
     div {
       margin-left: 16px;
-      
+
       strong {
         font-size: 20px;
         color: #3d3d4d;
