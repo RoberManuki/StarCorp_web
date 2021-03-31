@@ -1,8 +1,7 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { FiChevronRight } from 'react-icons/fi';
-import logoImg from '../../assets/logo.svg';
-import { Title, Form, Repositories, Error } from './styles';
+import { FiChevronRight, FiTrash2, FiEdit } from 'react-icons/fi';
+import { Form, Repositories, Error } from './styles';
 import api from '../../services/api';
 
 interface Repository {
@@ -43,7 +42,7 @@ const Dashboard: React.FunctionComponent = () => {
     event.preventDefault();
 
     if (!newRepo) {
-      setInputError('Digite o autor/nome do repositório.');
+      setInputError('Digite o usuário/nome do repositório.');
       return;
     }
 
@@ -60,40 +59,56 @@ const Dashboard: React.FunctionComponent = () => {
     }
   }
 
+  async function handleDeleteRepository(repository: Repository): Promise<void> {
+    setRepositories(
+      repositories.filter(repo => repo.full_name !== repository.full_name),
+    );
+  }
+
   return (
     <>
-      <img src={logoImg} alt="Github Explorer" />
-      <Title>Explore repositórios no GitHub</Title>
-
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>
         <input
           value={newRepo}
           onChange={e => setNewRepo(e.target.value)}
-          placeholder="Digite o nome do repositório"
+          placeholder="Usuário/Repositório"
         />
-        <button type="submit">Pesquisar</button>
+        <button type="submit">Adicionar Repositório</button>
       </Form>
 
       {inputError && <Error>{inputError}</Error>}
 
       <Repositories>
         {repositories.map(repository => (
-          <Link
-            key={repository.full_name}
-            to={`repositories/${repository.full_name}`}
-          >
-            <img
-              src={repository.owner.avatar_url}
-              alt={repository.owner.login}
-            />
+          <>
+            <button
+              type="button"
+              onClick={() => handleDeleteRepository(repository)}
+            >
+              <FiTrash2 color="#621f27" size={20} />
+            </button>
 
-            <div>
-              <strong>{repository.full_name}</strong>
-              <p>{repository.description}</p>
-            </div>
+            <button type="button" onClick={() => {}}>
+              <FiEdit color="#99ad26" size={20} />
+            </button>
 
-            <FiChevronRight size={20} />
-          </Link>
+            <Link
+              key={repository.full_name}
+              to={`repositories/${repository.full_name}`}
+            >
+              <img
+                src={repository.owner.avatar_url}
+                alt={repository.owner.login}
+              />
+
+              <div>
+                <strong>{repository.full_name}</strong>
+                <p>{repository.description}</p>
+              </div>
+
+              <FiChevronRight size={20} />
+            </Link>
+          </>
         ))}
       </Repositories>
     </>

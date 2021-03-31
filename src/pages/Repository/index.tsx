@@ -4,7 +4,6 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import api from '../../services/api';
 
 import { Header, RepositoryInfo, Issues } from './styles';
-import logoImg from '../../assets/logo.svg';
 
 interface RepositoryParams {
   repository: string;
@@ -34,7 +33,6 @@ interface Issue {
 const Repository: React.FunctionComponent = () => {
   const [repository, setRepository] = useState<Repository | null>(null);
   const [issues, setIssues] = useState<Issue[]>([]);
-  console.log(issues);
 
   const { params } = useRouteMatch<RepositoryParams>();
 
@@ -51,7 +49,6 @@ const Repository: React.FunctionComponent = () => {
   return (
     <>
       <Header>
-        <img src={logoImg} alt="Github Explorer" />
         <Link to="/">
           <FiChevronLeft size={16} />
           Voltar
@@ -70,6 +67,7 @@ const Repository: React.FunctionComponent = () => {
               <p>{repository.description}</p>
             </div>
           </header>
+
           <ul>
             <li>
               <strong>{repository.stargazers_count}</strong>
