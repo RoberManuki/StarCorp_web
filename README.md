@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# StarCorp_Web
+Desafio frontend --> Consumo da api do GitHub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h4 align="center">
+  🚧  Estilização dos botões de delete/update --> Em construção...  🚧
+</h4>
 
-## Available Scripts
+### Features
 
-In the project directory, you can run:
+- [x] Adicionar Repositório
+- [x] Ver detalhes do Repositório
+- [x] Excluir Repositório
+- [x] Encaminhar para a página do repositório no GitHub
+- [x] Listar Issues do Repositório
+- [ ] Atualizar informações do Repositório
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Pré-requisitos
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Para executar a aplicação, precisaremos instalar as seguintes ferramentas:
+[Git](https://git-scm.com), [React.js](https://pt-br.reactjs.org/), [Yarn](https://yarnpkg.com/) e [Docker](https://www.docker.com/).
 
-### `yarn test`
+O projeto foi desenvolvido no sistema operacional [Linux Mint 20.0](https://linuxmint.com/) com o editor [VSCode](https://code.visualstudio.com/).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### 🎲 Rodando a api (servidor)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# Clone este repositório:
+$ git clone <https://github.com/RoberManuki/StarCorp_web.git>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Acesse a pasta do projeto no terminal/cmd:
+$ cd StarCorp_web
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Dentro da pasta raiz, instale as dependências:
+$ yarn
 
-### `yarn eject`
+# Execute o servidor:
+$ yarn start
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# O servidor inciará na porta:3000 - acesse <http://localhost:3000> para fazer as requisições.
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### :star: Exemplos de requisições
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# Adicionar Repositório
+Input --> Usuário/Repositório
+Exemplo --> RoberManuki/StarCorp_web 
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### 🛠 Tecnologias
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+As seguintes ferramentas foram usadas na construção do projeto:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Express](https://expressjs.com/pt-br/)
+- [React.js](https://pt-br.reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redis](https://redis.io/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Docker](https://www.docker.com/)
+- [Styled-Components](https://styled-components.com/)
+
+### Autor
+
+Robson da Silva Oliveira
+
+- [LinkedIn](https://www.linkedin.com/in/robson-da-silva/)
+
+### Informações Adicionais
+
+Este projeto foi baseado no GoBarber_api, que é usado pela RocketSeat para ensinar Node, React e React-Native.
+
+- [GoBarber_web](https://github.com/RoberManuki/GoBarber-web.git)
+
+
