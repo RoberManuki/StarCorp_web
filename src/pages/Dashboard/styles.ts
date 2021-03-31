@@ -64,10 +64,8 @@ export const Error = styled.span`
 export const Repositories = styled.div`
   margin-top: 80px;
   max-width: 650px;
-
-  button {
-    display: flex;
-  }
+  display: block;
+  flex-direction: row;
 
   a {
     background: #fff;
@@ -78,6 +76,15 @@ export const Repositories = styled.div`
     display: flex;
     align-items: center;
     transition: transform 0.3s;
+    z-index: 3;
+
+    button {
+      margin-right: 10px;
+      display: block;
+      border: none;
+      background-color: #fff;
+      z-index: 4;
+    }
 
     img {
       width: 64px;
@@ -113,5 +120,15 @@ export const Repositories = styled.div`
         margin-top: 4px;
       }
     }
+  }
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+
+  button {
+    margin-top: 25px;
+    display: block;
+    border: none;
   }
 `;

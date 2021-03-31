@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronRight, FiTrash2, FiEdit } from 'react-icons/fi';
-import { Form, Repositories, Error } from './styles';
+import { Form, Repositories, Error, Buttons } from './styles';
 import api from '../../services/api';
 
 interface Repository {
@@ -81,16 +81,18 @@ const Dashboard: React.FunctionComponent = () => {
       <Repositories>
         {repositories.map(repository => (
           <>
-            <button
-              type="button"
-              onClick={() => handleDeleteRepository(repository)}
-            >
-              <FiTrash2 color="#621f27" size={20} />
-            </button>
+            <Buttons>
+              <button
+                type="button"
+                onClick={() => handleDeleteRepository(repository)}
+              >
+                <FiTrash2 color="#621f27" size={20} />
+              </button>
 
-            <button type="button" onClick={() => {}}>
-              <FiEdit color="#99ad26" size={20} />
-            </button>
+              <button type="button" onClick={() => {}}>
+                <FiEdit color="#99ad26" size={20} />
+              </button>
+            </Buttons>
 
             <Link
               key={repository.full_name}
@@ -105,6 +107,17 @@ const Dashboard: React.FunctionComponent = () => {
                 <strong>{repository.full_name}</strong>
                 <p>{repository.description}</p>
               </div>
+
+              {/* <button
+                type="button"
+                onClick={() => handleDeleteRepository(repository)}
+              >
+                <FiTrash2 color="#621f27" size={20} />
+              </button>
+
+              <button type="button" onClick={() => {}}>
+                <FiEdit color="#99ad26" size={20} />
+              </button> */}
 
               <FiChevronRight size={20} />
             </Link>
